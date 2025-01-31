@@ -297,15 +297,15 @@
                             <h1 class="fs-3 mb-1">Selamat Datang, {{ Str::upper(Auth()->user()->name) }}</h1>
                             {{-- <p class="fs-6 text-muted">Welcome back to your dashboard, if need a help <a href="help.html" class="link-primary">Contact us</a>.</p> --}}
                         </div>
-                        {{-- <ul class="nav nav-tabs tab-body-header rounded d-md-inline-flex d-flex justify-content-between"
+                        <label for="periode" class="mr-3">Pilih Periode </label>
+                        <ul class="nav nav-tabs tab-body-header rounded d-md-inline-flex d-flex justify-content-between"
                             role="tablist">
-                            <li class="nav-item flex-fill text-center"><a class="text-uppercase nav-link active"
-                                    href="index.html">Dashboard</a></li>
-                            <li class="nav-item flex-fill text-center"><a class="text-uppercase nav-link"
-                                    href="expenses.html">Expenses</a></li>
-                            <li class="nav-item flex-fill text-center"><a class="text-uppercase nav-link"
-                                    href="invoice.html">Invoices</a></li>
-                        </ul> --}}
+                            <li class="nav-item flex-fill text-center"><input type="month" name="periode"
+                                    id="periode"></li>
+                            {{-- <li class="nav-item flex-fill text-center"><a class="text-uppercase nav-link active"href="index.html">Dashboard</a></li>
+                            <li class="nav-item flex-fill text-center"><a class="text-uppercase nav-link"href="expenses.html">Expenses</a></li>
+                            <li class="nav-item flex-fill text-center"><a class="text-uppercase nav-link"href="invoice.html">Invoices</a></li> --}}
+                        </ul>
                     </div>
                     <div class="col-xl-4 col-lg-5 col-md-12 text-md-end">
                         <div class="mt-md-0 mt-2">
@@ -392,7 +392,7 @@
                     <div class="col-12">
                         <div class="card bg-transparent border-0 mt-4">
                             <h5>Penjualan by Marketing</h5>
-                            <table id="dataTable"
+                            <table id="dataTables"
                                 class="myDataTable table align-middle table-bordered mb-0 custom-table nowrap dataTable"
                                 style="width: 100%;">
                                 <thead>
@@ -1196,18 +1196,18 @@
 
     <!-- Jquery Page Js -->
     <script src="{{ url('assets') }}/assets/js/template.js"></script>
-    <script src="{{ url('assets') }}/js/index.js"></script>
+    {{-- <script src="{{ url('assets') }}/js/index.js"></script> --}}
     <script>
-        $(function() {
-            $('#daterange').daterangepicker({
-                opens: 'left',
-                format: 'MM/YYYY',
-                showDropdowns: true,
-            }, function(start, end, label) {
-                console.log("A new date selection was made: " + start.format('YYYY-MM') + ' to ' + end
-                    .format('YYYY-MM'));
-            });
-        });
+        // $(function() {
+        //     $('#daterange').daterangepicker({
+        //         opens: 'left',
+        //         format: 'MM/YYYY',
+        //         showDropdowns: true,
+        //     }, function(start, end, label) {
+        //         console.log("A new date selection was made: " + start.format('YYYY-MM') + ' to ' + end
+        //             .format('YYYY-MM'));
+        //     });
+        // });
 
         // DataTable
         $(document).ready(function() {
@@ -1220,6 +1220,150 @@
                         className: "dt-body-right"
                     }],
                 });
+        });
+    </script>
+
+    <!-- chart -->
+    <script>
+        $(document).ready(function() {
+            // Wrok Report
+            var options = {
+                series: [{
+                    name: "Task",
+                    data: [31, 40, 28, 51, 42, 109, 100],
+                }, {
+                    name: "Complated Task",
+                    data: [11, 32, 45, 32, 34, 52, 41],
+                }, {
+                    name: "Active Task",
+                    data: [50, 45, 12, 78, 23, 81, 29],
+                }, ],
+                chart: {
+                    height: 260,
+                    type: "area",
+                    toolbar: {
+                        show: false,
+                    },
+                },
+                colors: ["var(--chart-color1)", "var(--chart-color2)", "var(--chart-color3)"],
+                dataLabels: {
+                    enabled: false,
+                },
+                stroke: {
+                    curve: "smooth",
+                },
+                xaxis: {
+                    type: "datetime",
+                    categories: [
+                        "2021-01-1 GMT",
+                        "2021-02-1 GMT",
+                        "2021-03-1 GMT",
+                        "2021-04-1 GMT",
+                        "2021-05-1 GMT",
+                        "2021-06-1 GMT",
+                        "2021-07-1 GMT",
+                    ],
+                },
+                tooltip: {
+                    x: {
+                        format: "dd/MM/yy HH:mm",
+                    },
+                },
+            };
+            var chart = new ApexCharts(document.querySelector("#apex_Wrok_Report"), options);
+            chart.render();
+
+            // Sessions by Device
+            var options = {
+                chart: {
+                    height: 250,
+                    type: "donut",
+                },
+                dataLabels: {
+                    enabled: false,
+                },
+                legend: {
+                    position: "top",
+                    horizontalAlign: "center",
+                    show: true,
+                },
+                colors: ["var(--chart-color1)", "var(--chart-color2)"],
+                series: [86, 44],
+                labels: ["Male 86", "Female 44"],
+                responsive: [{
+                    breakpoint: 480,
+                    options: {
+                        chart: {
+                            width: 200,
+                        },
+                        legend: {
+                            position: "bottom",
+                        },
+                    },
+                }, ],
+            };
+            var chart = new ApexCharts(document.querySelector("#total_employees"), options);
+            chart.render();
+
+            // Total Projects
+            var options = {
+                series: [{
+                    name: "Upcoming",
+                    data: [4, 8, 2, 3, 12, 10, 8, 12, 11, 5, 8, 4],
+                }, {
+                    name: "In Progress",
+                    data: [18, 22, 20, 8, 13, 27, 18, 18, 20, 12, 14, 18],
+                }, {
+                    name: "Completed",
+                    data: [40, 35, 25, 28, 44, 53, 18, 29, 21, 19, 39, 51],
+                }, ],
+                chart: {
+                    type: "bar",
+                    height: 250,
+                    stacked: true,
+                    toolbar: {
+                        show: false,
+                    },
+                    zoom: {
+                        enabled: false,
+                    },
+                },
+                colors: ["var(--chart-color1)", "var(--chart-color2)", "var(--chart-color3)"],
+                dataLabels: {
+                    enabled: false,
+                },
+                legend: {
+                    position: "top",
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                    },
+                },
+                xaxis: {
+                    type: "datetime",
+                    categories: [
+                        "01/30/2021 GMT",
+                        "02/27/2021 GMT",
+                        "03/30/2021 GMT",
+                        "04/30/2021 GMT",
+                        "05/30/2021 GMT",
+                        "06/30/2021 GMT",
+                        "07/30/2021 GMT",
+                        "08/30/2021 GMT",
+                        "09/30/2021 GMT",
+                        "10/30/2021 GMT",
+                        "11/30/2021 GMT",
+                        "12/30/2021 GMT",
+                    ],
+                },
+                fill: {
+                    opacity: 1,
+                },
+            };
+            var chart = new ApexCharts(document.querySelector("#total_projects"), options);
+            chart.render();
+
         });
     </script>
 </body>
