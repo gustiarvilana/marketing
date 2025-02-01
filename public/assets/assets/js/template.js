@@ -12,10 +12,13 @@ if (typeof jQuery === "undefined") {
 // ALUI version update dynamic
 window.addEventListener("load", () => {
     var first = document.getElementById("ALUIversion");
-    first.outerHTML = '<span class="badge bg-primary rounded-pill ms-auto">v1.1.2</span>';
+    if (first) {  // Cek apakah elemen ada
+        first.outerHTML = '<span class="badge bg-primary rounded-pill ms-auto">v1.1.2</span>';
+    }
 });
 
-// 
+
+//
 $(function() {
     "use strict";
     let root = document.documentElement;
@@ -73,8 +76,8 @@ $(function() {
 
     // Prevents menu from closing when clicked inside header menu
     if(document.getElementById("NotificationsDiv")) {
-        document.getElementById("NotificationsDiv").addEventListener('click', function (event) { 
-            event.stopPropagation(); 
+        document.getElementById("NotificationsDiv").addEventListener('click', function (event) {
+            event.stopPropagation();
         });
     }
 
@@ -82,7 +85,7 @@ $(function() {
     var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     })
-    
+
 });
 
 // theme color setting
@@ -162,7 +165,7 @@ $(function() {
     var currentTheme = localStorage.getItem('theme');
     if (currentTheme) {
         document.documentElement.setAttribute('data-theme', currentTheme);
-    
+
         if (currentTheme === 'dark') {
             toggleSwitch.checked = true;
         }
@@ -177,10 +180,10 @@ $(function() {
             localStorage.setItem('theme', 'dark');
             $('.theme-high-contrast input[type="checkbox"]').prop("checked", false);
         }
-        else {        
+        else {
             document.documentElement.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
-        }    
+        }
     }
     function switchHc(e) {
         if (e.target.checked) {
@@ -188,45 +191,45 @@ $(function() {
             localStorage.setItem('theme', 'high-contrast');
             $('.theme-switch input[type="checkbox"]').prop("checked", false);
         }
-        else {        
+        else {
             document.documentElement.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
-        }  
+        }
     }
     toggleSwitch.addEventListener('change', switchTheme, false);
     toggleHcSwitch.addEventListener('change', switchHc, false);
 });
 
 // live support team js
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
+// var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+// (function(){
+// var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+// s1.async=true;
+// s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+// s1.charset='UTF-8';
+// s1.setAttribute('crossorigin','*');
+// s0.parentNode.insertBefore(s1,s0);
+// })();
 
 
 // do not add in your project
-//  document.onkeydown = function (e) { 
-//      if (event.keyCode == 123) { 
-//        return false; 
-//      } 
-//      if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { 
-//        return false; 
-//      } 
-//      if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) { 
-//        return false; 
-//      } 
-//      if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { 
-//        return false; 
-//      } 
-//      if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { 
-//        return false; 
-//      } 
-//  } 
+//  document.onkeydown = function (e) {
+//      if (event.keyCode == 123) {
+//        return false;
+//      }
+//      if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+//        return false;
+//      }
+//      if (e.ctrlKey && e.shiftKey && e.keyCode == 'C'.charCodeAt(0)) {
+//        return false;
+//      }
+//      if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+//        return false;
+//      }
+//      if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+//        return false;
+//      }
+//  }
 //  $(document).on("contextmenu",function(e){
 //     return false;
 //  });
