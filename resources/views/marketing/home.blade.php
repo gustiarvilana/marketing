@@ -91,6 +91,6 @@
     </div>
 @endsection
 
-@section('js')
+@push('js')
     @include('marketing.home-js')
-@endsection
+@endpush

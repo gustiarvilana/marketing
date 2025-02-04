@@ -24,8 +24,35 @@ class HomeMarketingController extends Controller
      */
     public function index()
     {
-        return view('marketing.home');
+        // Dummy data for sales, products, and types
+        $saless = [
+            ['id' => 1, 'name' => 'Sale 1'],
+            ['id' => 2, 'name' => 'Sale 2'],
+            ['id' => 3, 'name' => 'Sale 3'],
+        ];
+
+        $produks = [
+            ['id' => 101, 'name' => 'Product 1', 'price' => 150],
+            ['id' => 102, 'name' => 'Product 2', 'price' => 250],
+            ['id' => 103, 'name' => 'Product 3', 'price' => 350],
+        ];
+
+        $types = [
+            ['id' => 1, 'name' => 'Tunai'],
+            ['id' => 2, 'name' => 'Credit'],
+
+        ];
+
+        // Passing the dummy data to the view
+        $data = [
+            'saless' => $saless,
+            'produks' => $produks,
+            'types' => $types,
+        ];
+
+        return view('marketing.home', $data);
     }
+
 
     public function data()
     {

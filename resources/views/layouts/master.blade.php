@@ -18,6 +18,8 @@
 
     <!-- layout css -->
     <link rel="stylesheet" href="{{ url('assets') }}/assets/css/layout.j.min.css">
+
+    @stack('css')
 </head>
 
 <body>
@@ -474,26 +476,6 @@
 
     </div>
 
-    <!-- Modal -->
-    <div class="modal modal-add_sp fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Jquery Core Js -->
     <script src="{{ url('assets') }}/assets/bundles/libscripts.bundle.js"></script>
 
@@ -539,15 +521,15 @@
                     }
                 });
             });
-            // Menampilkan seluruh session
-            // console.log(@json(session()->all())); // Menampilkan semua session dalam format JSON
+
             // Menampilkan session tertentu
+            // console.log(@json(session()->all())); // Menampilkan semua session dalam format JSON
             // console.log(@json(session('start_periode'))); // Menampilkan session 'user_name' di JavaScript
             // console.log(@json(session('end_periode'))); // Menampilkan session 'user_name' di JavaScript
         }
     </script>
 
-    @yield('js')
+    @stack('js')
 </body>
 
 </html>
