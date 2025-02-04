@@ -1,6 +1,8 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +21,9 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home/data', [App\Http\Controllers\HomeController::class, 'data'])->name('home.data');
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/add_session', function (Request $request) {
+    Helpers::addSessionData($request->data);
+})->name('add_session');
+
+Route::get('/home/data', [App\Http\Controllers\Marketing\HomeMarketingController::class, 'data'])->name('home.data');
+Route::get('/home', [App\Http\Controllers\Marketing\HomeMarketingController::class, 'index'])->name('home');

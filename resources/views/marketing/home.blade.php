@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('header')
+    @include('layouts.marketing_header')
+@endsection
+
 @section('content')
     <div class="body_area py-4 py-md-5">
         <div class="container">
@@ -88,5 +92,5 @@
 @endsection
 
 @section('js')
-    @include('home-js')
+    @include('marketing.home-js')
 @endsection

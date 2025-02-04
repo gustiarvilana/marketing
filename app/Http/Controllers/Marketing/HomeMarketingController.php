@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Marketing;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeMarketingController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -23,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('marketing.home');
     }
 
     public function data()
@@ -110,5 +111,20 @@ class HomeController extends Controller
             'sessions_by_device' => $sessionsByDevice,
             'total_projects'     => $totalProjects,
         ]);
+    }
+
+    // YourController.php
+
+    public function addSession(Request $request)
+    {
+        // Validasi data yang diterima jika diperlukan
+        $validatedData = $request->validate([
+            'data' => 'required|array',
+        ]);
+
+        // Menyimpan session dalam bentuk array
+        session()->put($request->data);  // Menyimpan data session yang dikirim dalam bentuk array
+
+        return response()->json(['success' => true]);
     }
 }

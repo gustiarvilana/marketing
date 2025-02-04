@@ -57,7 +57,7 @@
                 },
             };
             var workReportChart = new ApexCharts(document.querySelector("#apex_Wrok_Report"),
-            workReportOptions);
+                workReportOptions);
             workReportChart.render();
 
             // Sessions by Device - Donut Chart
